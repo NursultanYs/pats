@@ -35,4 +35,7 @@ class NumbersArray extends Array {
 const array=new NumbersArray(2,5,7);
 console.log(array.sum());
 
+console.dir(array.__proto__)
+
+
 
