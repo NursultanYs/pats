@@ -105,3 +105,176 @@ return previous+current;
 })
 
 console.log()
+
+//Объекты
+
+const personalPlanPeter = {
+    name: "Peter",
+    age: "29",
+    skills: {
+        languages: ['ru', 'eng'],
+        programmingLangs: {
+            js: '20%',
+            php: '10%'
+        },
+        exp: '1 month'
+    },
+    showAgeAndLangs: function(plan) {
+        const {age} = plan;
+        const {languages} = plan.skills;
+        let str = `Мне ${age} и я владею языками: `;
+        console.log(languages)
+        languages.forEach(function(lang) {
+            str += `${lang.toUpperCase()} `;
+        });
+
+        return str;
+    }
+};
+
+console.log(personalPlanPeter.showAgeAndLangs(personalPlanPeter));
+
+function showExperience(plan) {
+    const {skills:{exp}}=plan;
+    return exp
+}
+
+console.log(showExperience(personalPlanPeter))
+
+function showProgrammingLangs(plan) {
+    let result='';
+    const {skills:{programmingLangs}}=plan
+    const {js,php,...rest}=programmingLangs;
+    if(Object.keys(programmingLangs).length===0){
+            result+=''
+        }
+    for(let key in programmingLangs){
+        result+=`Язык ${key} изучен на ${programmingLangs[key]}\n`
+    }
+    return result
+}
+
+console.log(showProgrammingLangs(personalPlanPeter))
+
+const obj={
+    first:1,
+    second:2,
+    third:[1,2,3]
+}
+const {first,second}=obj
+
+const [third,fourth,fifth]=obj.third
+console.log(fourth)
+console.log(third)
+
+function showFamily(arr) {
+    if(arr.length===0 || typeof(arr.length)!=="number"){
+        return 'Семья пуста'
+    }else{eturn `Семья состоит из: ${arr.join(' ')}`}
+}
+console.log(showFamily(['Peter', 'Ann', 'Alex', 'Linda']));
+
+function standardizeStrings(arr) {
+    return arr.join('\n').toLowerCase();
+}
+console.log(standardizeStrings(['liSBon', 'ROME', 'miLan', 'Dublin']))
+
+const someString = 'This is some strange string';
+
+function reverse(str) {
+    if(typeof(str)!=='string'){
+        return "Ошибка"
+    }else{
+        const arr2=str.split('').reverse().join('');
+        return arr2
+    }
+}
+console.log(reverse(someString))
+
+
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+const arr3=[...baseCurrencies,...additionalCurrencies]
+
+function availableCurr(arr, missingCurr) {
+    if(arr.length===0){
+       return 'Нет доступных валют:'
+    }else{
+        let result='Доступные валюты\n';
+        arr.forEach(e=>{
+        if(e!==missingCurr){
+            result+=`${e}\n`
+        }
+    })
+    return result
+    }
+}
+
+console.log(availableCurr(arr3,'USD'))
+
+
+const shoppingMallData = {
+    shops: [
+        {
+            width: 10,
+            length: 5
+        },
+        {
+            width: 15,
+            length: 7
+        },
+        {
+            width: 20,
+            length: 5
+        },
+        {
+            width: 8,
+            length: 10
+        }
+    ],
+    height: 5,
+    moneyPer1m3: 30,
+    budget: 50000
+}
+
+function isBudgetEnough(data) {
+    let {shops}=data;
+    shops=shops.map(e=>{
+        return e.width*e.length;
+    })
+    let arrea=shops.reduce((el,acc)=>acc+el);
+    arrea=arrea*data.height;
+    arrea=arrea*data.moneyPer1m3;
+    console.log(arrea)
+    if(arrea<=data.budget){
+        return 'Бюджета достаточно'
+    }else{
+        return 'Бюджета недостаточно'
+    }
+}   
+
+console.log(isBudgetEnough(shoppingMallData))
+
+
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
+
+function sortStudentsByGroups(arr) {
+    arr.sort();
+    const a=[],b=[],c=[],rest=[];
+    for(let i=0;i<arr.length;i++){
+        if(i<3){
+            a.push(arr[i]);
+        }else if(i<6){
+            b.push(arr[i]);
+        }
+        else if(i<9){
+            c.push(arr[i]);
+        }else{
+            rest.push[arr[i]]
+        }
+    }
+    return [a,b,c, `Оставшиеся студенты: ${rest.length === 0 ? '-' : rest.join(', ')}`]
+}
+
+console.log(sortStudentsByGroups(students))
