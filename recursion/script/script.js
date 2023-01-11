@@ -24,11 +24,11 @@ function pow2(x,n){
     if(n===1){
         return x;
     }else{
-        return x*pow2(x,n-1)
+        return x*pow2(x,n-1) //pow(2,2)=2 return 4  ; pow(2,1) return 2; pow(2,3) return 8
     }
 }
 
-console.log(pow2(2,10))
+console.log(pow2(2,3))
 
 
 let students={
@@ -55,11 +55,81 @@ let students={
     }
 }
 
+function getTotalProgressByRecursion(data){
+    if(Array.isArray(data)){
+        let total=0;
+        for(let i=0;i<data.length;i++){
+            total+=data[i].progress;
+        }
+
+        return [total,data.length]
+    }else{
+        let total=[0,0];
+
+        for(let subData of Object.values(data)){
+            const subDataArr=getTotalProgressByRecursion(subData);
+            total[0]+=subDataArr[0];
+            total[1]+=subDataArr[1];
+        }
+        return total
+    }
+
+}
+
+const result=getTotalProgressByRecursion(students);
+console.log((result[0]/result[1]))
+
+
 function getTotal(data){
     let total=0;
     let students=0;
+
+    for (const course of Object.values(data)) {
+        if (Array.isArray(course)){
+            students+=course.length;
+
+            course.forEach(e=>{
+                total+=e.progress
+            })
+        }else{
+            for (const lvl of Object.values(course)) {
+                students+=lvl.length
+                lvl.forEach(e=>{
+                    total+=e.progress
+                })
+            }
+        }
+        
+
+    }
 
     return total/students;
 }
 
 console.log(getTotal(students))
+
+
+
+function fact(a){
+    if(a===1){
+        return a;
+    }else{
+        return a*fact(a-1);
+    }
+
+}
+
+console.log(fact(4))
+
+
+function factorial(n) {
+    if((typeof(n))!=='number' || !Number.isInteger(n)){return 'Err'}
+    else if(n<=0){return 0}
+    else if (n===1){
+        return 1
+    }else{
+        return n*factorial(n-1)
+    }
+}
+
+console.log(factorial(12))
