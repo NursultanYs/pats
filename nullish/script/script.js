@@ -88,7 +88,7 @@ const obj = {
     }
 }
 
-console.log(obj[Object.getOwnPropertySymbols[obj][0]]);
+// console.log(obj[Object.getOwnPropertySymbols[obj][0]]);
 
 const myAwesomeDB={
     movies:[],
@@ -130,12 +130,12 @@ Object.defineProperties(user,{
 
 //Итерируемые конструкции
 
-for(key in obj){
-    console.log(obj[key]);
-}
-for(key of obj){
-    console.log(key);
-}
+// for(key in obj){
+//     console.log(obj[key]);
+// }
+// for(key of obj){
+//     console.log(key);
+// }
 
 
 
@@ -259,13 +259,13 @@ const set2=new Set(arr2);
 set.add('Ivan')
     .add('Oleg');
 
-set.delete(value);
-set.has(value);
-set.clear();
-set.size;
-set.values();
-set.keys();
-set.entries();
+// set.delete(value);
+// set.has(value);
+// set.clear();
+// set.size;
+// set.values();
+// set.keys();
+// set.entries();
 
 for(let value of set) console.log(value);
 
@@ -285,10 +285,10 @@ const bigint=12312312312312312312312312312322n;
 
 const sameBigint=BigInt(12312312312312312312312312312322);
 
-5n+1 //Error
-2n>1 //true
-console.log(1n+3n); //4n
-5n/2n //2n
+// 5n+1 //Error
+// 2n>1 //true
+// console.log(1n+3n); //4n
+// 5n/2n //2n
 
 let bign=1n;
 let number=2;
@@ -336,3 +336,51 @@ function deepCount(a){
 }
 
 console.log(deepCount([[[[[[[[[]]]]]]]]]))
+
+// WeakMap 
+
+let user3={name:'Ivan'};
+
+let weakmap=new WeakMap();
+weakmap.set(user3,'data');
+user3=null;
+console.log(weakmap.has(user3)) //false
+
+let cache=new WeakMap();
+function cacheUser(user){
+    if(!cache.has(user)){
+        cache.set(user,Date.now());
+    }
+    return cache.get(user);
+}
+
+let lena={name:"Elena"};
+let alex={name:"Alex"};
+
+cacheUser(lena);
+cacheUser(alex);
+
+lena=null;
+
+console.log(cache.has(lena)); 
+console.log(cache.has(alex));
+
+//WeakSet
+// add,has,delete
+
+let messages=[
+    {text:'Hello',from:'John'},
+    {text:'World',from:'Alex'},
+    {text:'.....',from:'M'}
+]
+
+let readMessages=new WeakSet();
+
+readMessages.add(messages[0]);
+// readMessages.add(messages[1]);
+readMessages.add(messages[0]);
+
+
+messages.shift();
+console.log(readMessages.has(messages[0]));
+
