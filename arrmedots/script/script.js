@@ -104,3 +104,5 @@ const getTotalIncomeAmount = (data) => {
 };
 
 console.log(getTotalIncomeAmount(funds))
+
+
