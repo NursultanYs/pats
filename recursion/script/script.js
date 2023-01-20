@@ -133,3 +133,18 @@ function factorial(n) {
 }
 
 console.log(factorial(12))
+
+
+function fib(n){
+    let result='';
+    if(n===1){
+        return n;
+    }else{
+         result+=`${n+fib(n-1)}` // fib(3)=0 , fib(2)=1 , fib(1)  return 1;
+    }
+    return result
+}
+
+console.log(fib(12))
+
+

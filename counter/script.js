@@ -30,3 +30,15 @@ console.log(c2)
  let sum = adder(val, 8)
  console.log('example of function returning a function: ', sum)
 
+ let sayHi = function(who) {
+    if (who) {
+      console.log(`Hello, ${who}`);
+    } else {
+      sayHi("Guest"); // Ошибка: sayHi не является функцией
+    }
+  };
+  
+  let welcome = sayHi;
+  
+  welcome();
+
