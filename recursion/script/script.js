@@ -148,3 +148,66 @@ function fib(n){
 console.log(fib(12))
 
 
+
+    function nthFibuo(n) {
+        if(n<=1){
+            return n;
+        }else{
+            return (nthFibuo(n-1) + nthFibuo(n-2)); //nthFibo(n - 1)   // nthFibo(2 - 2)=4    //nthFibo(4-2)=
+        }
+    }
+    console.log(nthFibuo(4))
+
+
+
+
+
+    function sumCubes(n){
+        let result=0
+        for(let i=0;i<=n;i++){
+            result+=i*i*i;
+        }
+        return result;
+      }
+      console.log(sumCubes(3));
+    
+      function setReducer(input) {
+        let arrResult=[];
+        let result = {};
+        for (let i = 0; i < input.length; ++i)
+        {
+            let a = input[i];
+            if (result[a] != undefined)
+                ++result[a];
+            else
+                result[a] = 1;
+        }
+        if(Object.keys(result).length>1){
+            arrResult=Object.values(result)
+            for (let i = 0; i < arrResult.length; ++i)
+            {
+                let a = arrResult[i];
+                if (result[a] != undefined)
+                    ++result[a];
+                else
+                    result[a] = 1;
+            }
+        }
+        return arrResult=Object.values(result);
+      }
+      console.log(setReducer([1, 100, 5, 6, 13, 13, 22, 5,5,5,13]));
+
+
+
+      function nthFibo(n) {
+        let arr=[0,1];
+        for(let i=1;i<n;i++){
+            arr.push(arr[i-1]+arr[i]);
+        }
+        if(n>0){
+            return arr[n-1];
+        }else{
+            return 0;
+        }
+      }
+      console.log(nthFibo(4));
